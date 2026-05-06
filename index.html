@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanane Abid — Cloud & System Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: #151d2e;
+  --bg-card-hover: #1a2540;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #22d3ee;
+  --accent-glow: rgba(34, 211, 238, 0.15);
+  --accent-green: #34d399;
+  --accent-orange: #fb923c;
+  --accent-purple: #a78bfa;
+  --accent-pink: #f472b6;
+  --border: rgba(148, 163, 184, 0.08);
+  --border-accent: rgba(34, 211, 238, 0.2);
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Sora', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ─── GRID BACKGROUND ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -1;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ─── NAVIGATION ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--text-muted); }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+/* ─── SECTIONS ─── */
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before { content: '//'; color: var(--text-muted); }
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 64px;
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent-green);
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.8s ease-out;
+}
+.hero-tag .dot {
+  width: 6px; height: 6px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+  animation: slideUp 0.8s ease-out 0.1s both;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: slideUp 0.8s ease-out 0.3s both;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.85rem 2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(34, 211, 238, 0.1);
+  transform: translateY(-2px);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  animation: slideUp 0.8s ease-out 0.4s both;
+}
+.hero-stat-num {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.hero-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ─── ABOUT ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+.about-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.about-info-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.3s;
+}
+.about-info-item:hover { border-color: var(--border-accent); }
+.about-info-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.about-info-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ─── ELEVATOR PITCH ─── */
+.pitch-section { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.pitch-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.pitch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-purple), var(--accent-pink));
+}
+.pitch-quote {
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-primary);
+  font-style: italic;
+}
+.pitch-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent-orange);
+  background: rgba(251, 146, 60, 0.08);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px dashed rgba(251, 146, 60, 0.3);
+}
+
+/* ─── SERVICES ─── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
+.service-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.service-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.service-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+.service-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(34, 211, 238, 0.06);
+  color: var(--accent);
+  border: 1px solid rgba(34, 211, 238, 0.1);
+}
+
+/* ─── PORTFOLIO ─── */
+.portfolio-section { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.project-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
+.project-header {
+  padding: 2rem 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.project-type {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+}
+.type-cloud { background: rgba(34, 211, 238, 0.1); color: var(--accent); }
+.type-automation { background: rgba(52, 211, 153, 0.1); color: var(--accent-green); }
+.type-security { background: rgba(251, 146, 60, 0.1); color: var(--accent-orange); }
+.type-devops { background: rgba(167, 139, 250, 0.1); color: var(--accent-purple); }
+.type-web { background: rgba(244, 114, 182, 0.1); color: var(--accent-pink); }
+
+.project-body { padding: 1.5rem 2rem 2rem; }
+.project-body h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+.project-body p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem; }
+.project-metric {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.project-metric::before { content: '▲'; font-size: 0.6rem; }
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.stack-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* ─── CERTIFICATIONS ─── */
+.cert-list { display: flex; flex-direction: column; gap: 1rem; }
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  transition: all 0.3s;
+}
+.cert-item:hover { border-color: var(--border-accent); }
+.cert-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.cert-badge-oci { background: rgba(251, 146, 60, 0.1); }
+.cert-badge-linux { background: rgba(34, 211, 238, 0.1); }
+.cert-badge-python { background: rgba(52, 211, 153, 0.1); }
+.cert-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+.cert-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  position: relative;
+}
+.testimonial-card::before {
+  content: '"';
+  font-size: 4rem;
+  font-family: Georgia, serif;
+  color: var(--accent);
+  opacity: 0.15;
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+  line-height: 1;
+}
+.testimonial-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+.testimonial-author { display: flex; align-items: center; gap: 1rem; }
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.testimonial-name { font-weight: 600; font-size: 0.9rem; }
+.testimonial-role { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ─── BLOG ─── */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.blog-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  transition: all 0.4s;
+}
+.blog-card:hover { border-color: var(--border-accent); transform: translateY(-4px); }
+.blog-date {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+.blog-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.4; }
+.blog-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; }
+.blog-tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(167, 139, 250, 0.08);
+  color: var(--accent-purple);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+}
+
+/* ─── RESUME ─── */
+.resume-section { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.resume-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.resume-info h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.resume-info p { color: var(--text-secondary); font-size: 0.95rem; }
+.resume-file {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(34, 211, 238, 0.05);
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+.resume-file-icon { font-size: 2rem; }
+.resume-file-name { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; }
+.resume-file-size { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ─── CONTACT ─── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-group label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+  outline: none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+.contact-details { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+.contact-item:hover { border-color: var(--border-accent); }
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: rgba(34, 211, 238, 0.08);
+  flex-shrink: 0;
+}
+.contact-item-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+.contact-item-value {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.contact-item a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.contact-item a:hover { text-decoration: underline; }
+
+/* ─── SOCIAL LINKS ─── */
+.social-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.social-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+.social-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.05), rgba(167, 139, 250, 0.05));
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.cta-section .section-title { max-width: 600px; margin: 0 auto 1rem; }
+.cta-subtitle { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.05rem; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+footer p {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 14, 23, 0.97);
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-toggle { display: block; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .services-grid, .blog-grid { grid-template-columns: 1fr; }
+  .portfolio-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 1.5rem; }
+  .about-info-grid { grid-template-columns: 1fr; }
+  .resume-card { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">hanane<span>.dev</span></a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Expertise</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="hero">
+  <div class="container hero-content">
+    <div class="hero-tag"><span class="dot"></span> Open to new opportunities</div>
+    <h1>I'm Hanane Abid,<br><span class="highlight">Cloud & System<br>Engineer.</span></h1>
+    <p class="hero-subtitle">3+ years engineering resilient cloud infrastructure at Oracle. I automate, secure, and scale production systems so businesses never miss a beat.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">→ Get in Touch</a>
+      <a href="#portfolio" class="btn btn-outline">View My Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">3+</div>
+        <div class="hero-stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">30%</div>
+        <div class="hero-stat-label">MTTR Reduction</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Uptime Maintained</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-label">Certifications</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-glow"></div>
+</section>
+
+<!-- ═══════ ABOUT ═══════ -->
+<section id="about">
+  <div class="container reveal">
+    <div class="section-label">About Me</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">Building reliable systems from the ground up.</h2>
+        <p>I'm a Cloud and System Engineer based in Morocco, with an engineering degree in Computer Science from ENSA Agadir. My journey in tech started with a strong foundation in physics and math, which shaped the way I approach complex infrastructure problems methodically and precisely.</p>
+        <p>At Oracle, I was responsible for administering enterprise-grade Linux environments, automating operations, and leading zero-downtime migrations for global clients. I was recognized as a <strong>TTR Champion</strong> for consistently delivering the fastest incident resolution times on my team.</p>
+        <p>I'm currently deepening my expertise through a cybersecurity specialization with ALX Africa, bridging the gap between system reliability and security engineering.</p>
+      </div>
+      <div>
+        <div class="about-info-grid">
+          <div class="about-info-item">
+            <div class="about-info-label">Location</div>
+            <div class="about-info-value">Morocco</div>
+          </div>
+          <div class="about-info-item">
+            <div class="about-info-label">Education</div>
+            <div class="about-info-value">Eng. Degree, CS (Bac+5)</div>
+          </div>
+          <div class="about-info-item">
+            <div class="about-info-label">Languages</div>
+            <div class="about-info-value">AR · FR · EN</div>
+          </div>
+          <div class="about-info-item">
+            <div class="about-info-label">Currently</div>
+            <div class="about-info-value">ALX Cybersecurity</div>
+          </div>
+          <div class="about-info-item">
+            <div class="about-info-label">Last Role</div>
+            <div class="about-info-value">Cloud Eng. @ Oracle</div>
+          </div>
+          <div class="about-info-item">
+            <div class="about-info-label">Focus</div>
+            <div class="about-info-value">Linux · Cloud · Security</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ELEVATOR PITCH ═══════ -->
+<section class="pitch-section" id="pitch">
+  <div class="container reveal">
+    <div class="section-label">Elevator Pitch</div>
+    <div class="section-title">In 30 seconds</div>
+    <div class="pitch-card">
+      <p class="pitch-quote">"I'm Hanane Abid, a Cloud and System Engineer with 3+ years at Oracle, where I kept mission-critical infrastructure running at 100% uptime for global clients. I specialize in Linux administration, automation with Python and Ansible, and cloud platforms like OCI and AWS. I cut incident resolution times by 30% and led zero-downtime migrations because production doesn't get a second chance. Currently adding cybersecurity to my toolkit through ALX Africa, I'm looking for my next opportunity to build, secure, and scale the systems that businesses depend on."</p>
+      <!--div class="pitch-placeholder">⚡ Placeholder — record your video pitch and embed it here</div -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SERVICES/EXPERTISE ═══════ -->
+<section id="services">
+  <div class="container reveal">
+    <div class="section-label">Services & Expertise</div>
+    <h2 class="section-title">What I bring to the table.</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(34,211,238,0.08);">🐧</div>
+        <h3>Linux System Administration</h3>
+        <p>Enterprise-grade management of Oracle Linux, RHEL, Ubuntu, CentOS, and Windows Server in critical production environments.</p>
+        <div class="service-tags">
+          <span class="service-tag">Oracle Linux</span>
+          <span class="service-tag">RHEL</span>
+          <span class="service-tag">Ubuntu</span>
+          <span class="service-tag">CentOS</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(52,211,153,0.08);">⚙️</div>
+        <h3>Automation & IaC</h3>
+        <p>Scripting and automating system provisioning, configuration management, and deployment workflows to eliminate manual toil.</p>
+        <div class="service-tags">
+          <span class="service-tag">Ansible</span>
+          <span class="service-tag">Terraform</span>
+          <span class="service-tag">Python</span>
+          <span class="service-tag">Bash</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(167,139,250,0.08);">☁️</div>
+        <h3>Cloud Engineering</h3>
+        <p>Deploying and managing workloads on OCI and AWS with a focus on reliability, scalability, and cost optimization.</p>
+        <div class="service-tags">
+          <span class="service-tag">OCI</span>
+          <span class="service-tag">AWS</span>
+          <span class="service-tag">Cloud Architecture</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(251,146,60,0.08);">🐳</div>
+        <h3>Containerization & Orchestration</h3>
+        <p>Building, deploying, and managing containerized applications with Docker and Kubernetes for microservices architectures.</p>
+        <div class="service-tags">
+          <span class="service-tag">Docker</span>
+          <span class="service-tag">Kubernetes</span>
+          <span class="service-tag">Compose</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(244,114,182,0.08);">📊</div>
+        <h3>Monitoring & Incident Management</h3>
+        <p>Proactive infrastructure monitoring, log analysis, and ITIL-compliant incident response to minimize downtime.</p>
+        <div class="service-tags">
+          <span class="service-tag">ITIL</span>
+          <span class="service-tag">Log Analysis</span>
+          <span class="service-tag">MTTR</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="background:rgba(34,211,238,0.08);">🔐</div>
+        <h3>Cybersecurity</h3>
+        <p>CVE vulnerability remediation, patch validation, and security hardening across production systems. Currently specializing further via ALX Africa.</p>
+        <div class="service-tags">
+          <span class="service-tag">CVE Remediation</span>
+          <span class="service-tag">Patch Mgmt</span>
+          <span class="service-tag">Hardening</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PORTFOLIO ═══════ -->
+<section class="portfolio-section" id="portfolio">
+  <div class="container reveal">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Selected work & projects.</h2>
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type type-cloud">Cloud Ops</span>
+          <span style="color:var(--text-muted);font-size:0.8rem;">Oracle</span>
+        </div>
+        <div class="project-body">
+          <h3>Enterprise Infrastructure Monitoring System</h3>
+          <p>Designed and implemented proactive monitoring for critical infrastructure services across global client environments, integrating log ingestion and alerting pipelines.</p>
+          <div class="project-metric">Reduced MTTR by 30%</div>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Bash</span>
+            <span class="stack-tag">Log Analysis</span>
+            <span class="stack-tag">OCI</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type type-automation">Automation</span>
+          <span style="color:var(--text-muted);font-size:0.8rem;">Oracle</span>
+        </div>
+        <div class="project-body">
+          <h3>Zero-Downtime OS Migration (LEAPP)</h3>
+          <p>Led end-to-end OS migration campaigns using LEAPP, ensuring seamless transitions with zero service interruption during critical maintenance windows.</p>
+          <div class="project-metric">100% service availability sustained</div>
+          <div class="project-stack">
+            <span class="stack-tag">LEAPP</span>
+            <span class="stack-tag">RHEL</span>
+            <span class="stack-tag">Oracle Linux</span>
+            <span class="stack-tag">Ansible</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type type-security">Security</span>
+          <span style="color:var(--text-muted);font-size:0.8rem;">Oracle</span>
+        </div>
+        <div class="project-body">
+          <h3>CVE Vulnerability Remediation Campaign</h3>
+          <p>Drove urgent vulnerability remediation and patch validation across production environments, strengthening the overall security posture for enterprise clients.</p>
+          <div class="project-metric">Critical CVEs patched across prod</div>
+          <div class="project-stack">
+            <span class="stack-tag">CVE Analysis</span>
+            <span class="stack-tag">Patch Mgmt</span>
+            <span class="stack-tag">Linux</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type type-devops">DevOps</span>
+          <span style="color:var(--text-muted);font-size:0.8rem;">Oracle</span>
+        </div>
+        <div class="project-body">
+          <h3>CI/CD Pipeline Optimization</h3>
+          <p>Collaborated with DevOps teams to improve CI/CD pipeline reliability, automate deployment tasks, and streamline production release processes.</p>
+          <div class="project-metric">Improved deployment reliability</div>
+          <div class="project-stack">
+            <span class="stack-tag">CI/CD</span>
+            <span class="stack-tag">Git</span>
+            <span class="stack-tag">Docker</span>
+            <span class="stack-tag">Ansible</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type type-automation">Automation</span>
+          <span style="color:var(--text-muted);font-size:0.8rem;">Oracle — Internship</span>
+        </div>
+        <div class="project-body">
+          <h3>Python Test Automation Tool</h3>
+          <p>Developed features for a Python-based automation tool that improved test coverage and consistency across Oracle engineering projects.</p>
+          <div class="project-metric">Improved test coverage & consistency</div>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Unit Testing</span>
+            <span class="stack-tag">Integration Testing</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type type-web">Web App</span>
+          <span style="color:var(--text-muted);font-size:0.8rem;">Infosat — Internship</span>
+        </div>
+        <div class="project-body">
+          <h3>Transport Management Web Application</h3>
+          <p>Designed and built a full-stack web application for merchandise transport management, handling backend logic and frontend UI.</p>
+          <div class="project-metric">Improved data accuracy & responsiveness</div>
+          <div class="project-stack">
+            <span class="stack-tag">Spring Boot</span>
+            <span class="stack-tag">Angular</span>
+            <span class="stack-tag">REST API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CERTIFICATIONS ═══════ -->
+<section id="certifications">
+  <div class="container reveal">
+    <div class="section-label">Certifications</div>
+    <h2 class="section-title">Validated credentials.</h2>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-badge cert-badge-oci">🏅</div>
+        <div class="cert-info">
+          <h4>Oracle Cloud Infrastructure 2025 Certified Foundations Associate</h4>
+          <p>Oracle · 2025</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-badge cert-badge-linux">🏅</div>
+        <div class="cert-info">
+          <h4>Oracle Linux: System Administration on Oracle Cloud Infrastructure</h4>
+          <p>Oracle</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-badge cert-badge-linux">🏅</div>
+        <div class="cert-info">
+          <h4>Linux: Multitasking at the Command Line</h4>
+          <p>LinkedIn Learning</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-badge cert-badge-python">🏅</div>
+        <div class="cert-info">
+          <h4>Python Automation And Testing</h4>
+          <p>LinkedIn Learning</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TESTIMONIALS ═══════ -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container reveal">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">What colleagues say.</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"I had the pleasure of working with Hanane on the Oracle Linux OCI support team. She is highly skilled, reliable, and consistently delivered excellent solutions for our customers. Her technical expertise and teamwork made a real difference on our team. I highly recommend her for any role in Linux or cloud services."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:rgba(34,211,238,0.15);color:var(--accent);">TL</div>
+          <div>
+            <div class="testimonial-name">Manager</div>
+            <div class="testimonial-role">OCI Service Manager, Oracle</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"I had the pleasure of working with Hanane for three years on our Linux support team. When I hired her she had finished an internship in Oracle. Although Linux was not her primary skill and didn’t have previous customer support experience, she consistently impressed both customers and colleagues with technical expertise and a genuine commitment to outstanding service. Quick to learn and always adaptable, Hanane regularly delivered solutions even on challenging issues and maintained excellent customer satisfaction throughout. 
+As a valued team member, Hanane brought positivity, flexibility and consistently contributed creative solutions. The feedback from customers was outstanding, and their ability to obtain solutions to various technical issues made a real difference in our team’s performance. 
+I highly recommend Hanane to any organization looking for a knowledgeable, reliable, and customer-focused employee. Her positive attitude and dedication will be an asset wherever she goes."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:rgba(52,211,153,0.15);color:var(--accent-green);">SE</div>
+          <div>
+            <div class="testimonial-name">Senior Manager</div>
+            <div class="testimonial-role">Linux Support Manager, Oracle</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"I had the pleasure of working with Hanane Abid in the Oracle Linux & OCI team, where she consistently demonstrated strong technical expertise and a proactive mindset. Hanane has excellent skills in Linux system administration, DevOps practices, and cloud environments (OCI, Docker, Kubernetes, Terraform).
+
+What impressed me most was her ability to analyze and troubleshoot complex issues, while always keeping a focus on improving system reliability and efficiency. She also collaborated seamlessly with cross-functional teams, showing strong communication skills.
+
+Hanane is not only technically skilled but also highly dedicated, professional, and reliable. I truly enjoyed working with her and highly recommend her for any role that requires technical excellence, problem-solving, and teamwork."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:rgba(167,139,250,0.15);color:var(--accent-purple);">MG</div>
+          <div>
+            <div class="testimonial-name">Mentor</div>
+            <div class="testimonial-role">Cloud and System Engineer, Oracle</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"It was a genuine pleasure to work alongside Hanane when I first joined. Hanane possesses a rigorous, systematic approach to solving enterprise-class customer issues, consistently demonstrating an ability to navigate complex technical challenges. Her deep expertise in Linux, Terraform, Kubernetes and the broader DevOps ecosystem made her uniquely capable of adapting to any agile environment, regardless of its size, scope, or technical demands.
+
+Any organization would be fortunate to gain a professional of Hanane's caliber. I recommend her without hesitation and wish her tremendous success in her next chapter. I truly hope our paths cross again someday."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:rgba(244,114,182,0.15);color:var(--accent-pink);">PM</div>
+          <div>
+            <div class="testimonial-name">Team member</div>
+            <div class="testimonial-role">Cloud Engineer, Oracle</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+<section id="blog">
+  <div class="container reveal">
+    <div class="section-label">Blog & Insights</div>
+    <h2 class="section-title">Thoughts & knowledge sharing.</h2>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-date">Coming Soon</div>
+        <h3>Zero-Downtime Migrations: Lessons from LEAPP at Scale</h3>
+        <p>A deep dive into how I led OS migration campaigns that maintained 100% service availability for enterprise clients.</p>
+        <span class="blog-tag">Linux</span>
+      </div>
+      <div class="blog-card">
+        <div class="blog-date">Coming Soon</div>
+        <h3>Cutting MTTR by 30%: A Monitoring Strategy That Works</h3>
+        <p>How proactive surveillance and smart log analysis helped me drastically reduce incident resolution times at Oracle.</p>
+        <span class="blog-tag">DevOps</span>
+      </div>
+      <div class="blog-card">
+        <div class="blog-date">Coming Soon</div>
+        <h3>From SysAdmin to Cybersecurity: My Learning Path</h3>
+        <p>Why I'm combining system engineering expertise with cybersecurity specialization, and what the journey looks like.</p>
+        <span class="blog-tag">Cybersecurity</span>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ═══════ RESUME ═══════ -->
+<section class="resume-section" id="resume">
+  <div class="container reveal">
+    <div class="section-label">Resume / CV</div>
+    <h2 class="section-title">Download my full CV.</h2>
+    <div class="resume-card">
+      <div class="resume-info">
+        <h3>Hanane Abid — Cloud & System Engineer</h3>
+        <p>Complete work history, education, certifications, and technical skills. Available as a downloadable PDF.</p>
+      </div>
+      <a href="Hanane_Abid_CV_EN.pdf" download class="btn btn-primary" style="white-space:nowrap;">↓ Download CV (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT ═══════ -->
+<section id="contact">
+  <div class="container reveal">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Let's build something great.</h2>
+    <div class="contact-grid">
+      <form class="contact-form" action="https://formspree.io/f/mwvyqede" method="POST">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="Jane Doe" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="Project inquiry, collaboration...">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New message from your portfolio!">
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+      </form>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value"><a href="mailto:abidhanane07@gmail.com">abidhanane07@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">+212 603 100 357</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-value">Casablanca, Morocco</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-value"><a href="https://linkedin.com/in/hanane-abid-2b4166198" target="_blank">linkedin.com/in/hanane-abid</a></div>
+          </div>
+        </div>
+        <!-- Social Links -->
+        <div class="social-bar">
+          <a href="https://linkedin.com/in/hanane-abid-2b4166198" target="_blank" class="social-link" title="LinkedIn">in</a>
+          <a href="https://github.com/" target="_blank" class="social-link" title="GitHub">⌂</a>
+          <a href="mailto:abidhanane07@gmail.com" class="social-link" title="Email">✉</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CALL TO ACTION ═══════ -->
+<section class="cta-section">
+  <div class="container reveal">
+    <div class="section-label" style="justify-content:center;">Let's Connect</div>
+    <h2 class="section-title">Ready to strengthen your infrastructure?</h2>
+    <p class="cta-subtitle">Whether you need a cloud engineer, a system administrator, or a DevOps collaborator — I'd love to hear from you.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:abidhanane07@gmail.com" class="btn btn-primary">→ Email Me</a>
+      <a href="https://linkedin.com/in/hanane-abid-2b4166198" target="_blank" class="btn btn-outline">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <p>© 2026 Hanane Abid — Built with purpose. All rights reserved.</p>
+</footer>
+
+<!-- ═══════ SCROLL REVEAL ═══════ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
+
+</body>
+</html>
